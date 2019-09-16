@@ -10,8 +10,8 @@ pipeline {
         appName = 'NodeJs + React'
         appType = 'WEB'
     }
-    stages {
-        try{
+    try{
+        stages {
             stage('Build') { 
                 steps {
                     slackSend(channel: "pipeline", message: "[${appType}]${appName} - Job Started! :)", sendAsText: true)
@@ -35,8 +35,8 @@ pipeline {
                     slackSend(channel: "pipeline", message: "[${appType}]${appName} - Success! :)", sendAsText: true)
                 }
             }
-        } catch (e) {
-            slackSend(channel: "pipeline",color: "danger", message: "[${appType}]${appName} - Failed! :)", sendAsText: true)
-        }
+        }            
+    } catch (e) {
+        slackSend(channel: "pipeline",color: "danger", message: "[${appType}]${appName} - Failed! :)", sendAsText: true)
     }
 }
